@@ -11,7 +11,7 @@ def collect_information():
         location = request.form["location"]
 
         # Store the collected data in a text file
-        with open("collected_data.txt", "a") as file:
+        with open("E:\project\collected_data.txt",'a') as file:
             file.write(f" {name}, {class_name}, {section} ,   {location}\n")
 
         return f"Submission Successfull"
