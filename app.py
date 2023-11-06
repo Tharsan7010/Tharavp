@@ -1,13 +1,10 @@
 from flask import Flask, request, render_template
-import pandas as pd
 
 app = Flask(__name__)
 
-data = []
-
 @app.route('/')
 def index():
-    return render_template('form.html')
+    return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -16,14 +13,10 @@ def submit():
     section = request.form.get('section')
     location = request.form.get('location')
 
-    data.append({'Name': name, 'Class': class_name, 'Section':section, 'Location':location})
+    with open('data.txt', 'a') as file:
+        file.write(f'Name: {name}, Class: {class_name}, Section:{section}, Location:{location}\n')
 
-    # Create or update an Excel file to store the data
-    df = pd.DataFrame(data)
-    df.to_excel('student_data.xlsx', index=False)
-
-    return 'Data has been submitted and stored in Excel.'
+    return 'Data has been submitted.'
 
 if __name__ == '__main__':
     app.run(debug=True)
-
