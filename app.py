@@ -1,22 +1,29 @@
 from flask import Flask, request, render_template
+import pandas as pd
 
-app = Flask(__name__)
+app = Flask(__name)
 
-@app.route("/", methods=["GET", "POST"])
-def collect_information():
-    if request.method == "POST":
-        name = request.form["name"]
-        class_name = request.form["class"]
-        section = request.form["section"]
-        location = request.form["location"]
+data = []
 
-        # Store the collected data in a text file
-        with open("E:\project\collected_data.txt",'a') as file:
-            file.write(f" {name}, {class_name}, {section} ,   {location}\n")
+@app.route('/')
+def index():
+    return render_template('form.html')
 
-        return f"Submission Successfull"
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form.get('name')
+    class_name = request.form.get('class')
+    section = request.form.get('section')
+    location = request.form.get('location')
 
-    return render_template("form.html")
+    data.append({'Name': name, 'Class': class_name, 'Section':section, 'Location':location})
 
-if __name__ == "__main__":
-    app.run()
+    # Create or update an Excel file to store the data
+    df = pd.DataFrame(data)
+    df.to_excel('student_data.xlsx', index=False)
+
+    return 'Data has been submitted and stored in Excel.'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
