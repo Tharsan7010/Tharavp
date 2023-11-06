@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import pandas as pd
 
-app = Flask(__name)
+app = Flask(__name__)
 
 data = []
 
