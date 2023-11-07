@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('form.html')
+    return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -17,7 +17,7 @@ def submit():
     # Store the data in an Excel file
     workbook = openpyxl.load_workbook('data.xlsx')
     worksheet = workbook.active
-    worksheet.append([name, grade, section, location ])
+    worksheet.append([name, grade, section, location])
     workbook.save('data.xlsx')
 
     return redirect('/')
