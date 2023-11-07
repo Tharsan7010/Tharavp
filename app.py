@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect
-import openpyxl
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
@@ -10,17 +9,14 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form.get('name')
-    grade = request.form.get('grade')
+    grade = request.form.get('class')
     section = request.form.get('section')
     location = request.form.get('location')
 
-    # Store the data in an Excel file
-    workbook = openpyxl.load_workbook('data.xlsx')
-    worksheet = workbook.active
-    worksheet.append([name, grade, section, location])
-    workbook.save('data.xlsx')
+    with open('data.txt', 'a') as file:
+        file.write(f'Name: {name}, Grade: {grade}, Section:{section}, Location:{location}\n')
 
-    return redirect('/')
+    return 'Data has been submitted.'
 
 if __name__ == '__main__':
     app.run(debug=True)
