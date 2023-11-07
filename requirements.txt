@@ -1,4 +1,4 @@
 Flask
 Gunicorn
 pandas
-openpxyl
+openpyxl
