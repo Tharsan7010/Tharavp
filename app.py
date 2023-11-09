@@ -9,7 +9,7 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form.get('name')
-    grade = request.form.get('class')
+    grade = request.form.get('grade')
     section = request.form.get('section')
     location = request.form.get('location')
 
