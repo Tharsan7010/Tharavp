@@ -1,0 +1,12 @@
+{
+    "hosting": {
+      "public": "public",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/https://thar-cd90f.firebaseapp.com"
+        }
+      ]
+    }
+  }
+  
