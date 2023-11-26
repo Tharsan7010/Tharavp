@@ -1,38 +1,43 @@
-from flask import Flask, render_template, request, redirect
-from openpyxl import Workbook
+from flask import Flask, render_template, request, redirect, url_for
+import pandas as pd
 
 app = Flask(__name__)
 
-# Use an in-memory list to store the data (replace this with a database in a real-world scenario)
-data_list = []
+# In-memory storage for collected data
+collected_data = []
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        # Get form data
-        name = request.form['name']
-        grade = request.form['grade']
-        section = request.form['section']
-        location = request.form['location']
+    return render_template('form.html')
 
-        # Append the data to the list
-        data_list.append([name, grade, section, location])
+@app.route('/submit', methods=['POST'])
+def submit():
+    # Get data from the form
+    name = request.form.get('name')
+    grade = request.form.get('grade')
+    section = request.form.get('section')
+    location = request.form.get('location')
 
-        # Create or load the Excel workbook
-        workbook = Workbook()
-        sheet = workbook.active
+    # Store data in memory
+    collected_data.append({'Name': name, 'Grade': grade, 'Section': section, 'Location': location})
 
-        # Write headers
-        sheet.append(['Name', 'Grade', 'Section', 'Location'])
+    # Redirect to the home page after submission
+    return redirect(url_for('form'))
 
-        # Write data
-        for data_row in data_list:
-            sheet.append(data_row)
+@app.route('/download')
+def download():
+    # Convert the collected data to a DataFrame
+    df = pd.DataFrame(collected_data)
 
-        # Save the workbook to a file (replace 'data.xlsx' with your desired filename)
-        workbook.save('collect.xlsx')
+    # Save data to a text file
+    text_file_path = 'collect.txt'
+    df.to_csv(text_file_path, index=False, sep='\t')
 
-    return render_template('form.html', data_list=data_list)
+    # Save data to an Excel file
+    excel_file_path = 'collect.xlsx'
+    df.to_excel(excel_file_path, index=False)
+
+    return f'Data saved to {text_file_path} and {excel_file_path}'
 
 if __name__ == '__main__':
     app.run(debug=True)
