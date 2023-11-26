@@ -31,8 +31,9 @@ def index():
 
         # Save the workbook to a file (replace 'data.xlsx' with your desired filename)
         workbook.save('collect.xlsx')
+        return 'submission successful'
 
     return render_template('form.html', data_list=data_list)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False,host='0.0.0.0')
