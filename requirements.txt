@@ -20,7 +20,7 @@ Pillow
 pyperclip
 python-dateutil
 pytz
-app
+
 ratelim
 requests
 six
