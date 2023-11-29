@@ -6,7 +6,7 @@ customtkinter==5.2.1
 darkdetect==0.8.0
 decorator==5.1.1
 et-xmlfile==1.1.0
-Flask==3.0.0
+Flask
 future==0.18.3
 geocoder==1.38.1
 idna==3.4
