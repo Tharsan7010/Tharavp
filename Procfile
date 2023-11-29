@@ -1,1 +1,1 @@
-web: gunicorn --module utube:app
+gunicorn utube:app
