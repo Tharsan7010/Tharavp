@@ -19,6 +19,9 @@ pandas
 Pillow
 pyperclip
 python-dateutil
+pytz
+pywin32
+ratelim
 requests
 six
 tkintermapview
