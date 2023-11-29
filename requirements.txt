@@ -19,9 +19,6 @@ pandas
 Pillow
 pyperclip
 python-dateutil
-pytz
-pywin32
-ratelim
 requests
 six
 tkintermapview
@@ -29,4 +26,4 @@ tzdata
 urllib3
 Werkzeug
 Gunicorn
-folium==0.12.1
+folium
