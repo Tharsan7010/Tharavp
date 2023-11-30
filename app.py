@@ -26,7 +26,7 @@ def index():
 
         cur = mysql.connection.cursor()
 
-        cur.execute("INSERT INTO Thar (name,grade,section,location) VALUES (%s,%s,%s,%s)",(name,grade,section,location))
+        cur.execute("INSERT INTO thar (name,grade,section,location) VALUES (%s,%s,%s,%s)",(name,grade,section,location))
      
         mysql.connection.commit()
 
