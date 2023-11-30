@@ -12,7 +12,7 @@ app.config['MYSQL_USER'] = "root"
 app.config['MYSQL_PASSWORD'] = "Jaish007@#"
 app.config['MYSQL_DB'] = "Thar"
 
-
+mysql = MySQL(app)
 
 @app.route('/',methods=['GET','POST'])
 def index():
