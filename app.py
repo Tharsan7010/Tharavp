@@ -7,11 +7,11 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = "localhost"
-app.config['MYSQL_USER'] = "root"
+app.config['MYSQL_HOST'] = "bauy2nprmwhcngtdmxc6-mysql.services.clever-cloud.com"
+app.config['MYSQL_USER'] = "udkpyw0qqzuail4y"
 
-app.config['MYSQL_PASSWORD'] = "Jaish007@#"
-app.config['MYSQL_DB'] = "Thar"
+app.config['MYSQL_PASSWORD'] = "VbHvB3mc3cL2PSK5yeSL"
+app.config['MYSQL_DB'] = "bauy2nprmwhcngtdmxc6"
 
 mysql = MySQL(app)
 
