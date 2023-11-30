@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request
 
-
+import mysql-connector-python
 import mysql.connector
 
 from flask_mysqldb import MySQL
