@@ -3,3 +3,5 @@ Flask
 flask_mysqldb
 myapp
 app
+mysql-connector-python
+mysqlclient
